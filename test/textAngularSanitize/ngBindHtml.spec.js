@@ -1,6 +1,5 @@
 'use strict';
 
-
 describe('ngBindHtml', function() {
   beforeEach(module('ngSanitize'));
 
@@ -8,9 +7,9 @@ describe('ngBindHtml', function() {
     var element = $compile('<div ng-bind-html="html"></div>')($rootScope);
     $rootScope.html = '<div unknown>hello</div>';
     $rootScope.$digest();
-    expect(angular.lowercase(element.html())).toEqual('<div>hello</div>');
+    // Use toLowerCase() instead of angular.lowercase
+    expect(element.html().toLowerCase()).toEqual('<div>hello</div>');
   }));
-
 
   it('should reset html when value is null or undefined', inject(function($compile, $rootScope) {
     var element = $compile('<div ng-bind-html="html"></div>')($rootScope);
@@ -18,11 +17,13 @@ describe('ngBindHtml', function() {
     angular.forEach([null, undefined, ''], function(val) {
       $rootScope.html = 'some val';
       $rootScope.$digest();
-      expect(angular.lowercase(element.html())).toEqual('some val');
+      // Use toLowerCase() instead of angular.lowercase
+      expect(element.html().toLowerCase()).toEqual('some val');
 
       $rootScope.html = val;
       $rootScope.$digest();
-      expect(angular.lowercase(element.html())).toEqual('');
+      // Use toLowerCase() instead of angular.lowercase
+      expect(element.html().toLowerCase()).toEqual('');
     });
   }));
 });
