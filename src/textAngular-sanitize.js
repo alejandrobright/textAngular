@@ -1,5 +1,5 @@
 /**
- * @license AngularJS v1.3.10
+ * @license AngularJS v1.8.2
  * (c) 2010-2014 Google, Inc. http://angularjs.org
  * License: MIT
  */
@@ -378,7 +378,7 @@ function htmlParser(html, handler) {
   parseEndTag();
 
   function parseStartTag(tag, tagName, rest, unary) {
-    tagName = angular.lowercase(tagName);
+    tagName = angular.toLowerCase(tagName);
     if (blockElements[ tagName ]) {
       while (stack.last() && inlineElements[ stack.last() ]) {
         parseEndTag("", stack.last());
